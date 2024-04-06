@@ -35,8 +35,10 @@
 # 31. Random hue
 
 import os
+import csv
 import tensorflow as tf
-from keras.src.legacy.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
+from keras.src.legacy.preprocessing.image import ImageDataGenerator
+from keras.utils import img_to_array, load_img
 from keras import layers
 from keras import models
 from keras import Model
@@ -53,10 +55,10 @@ from keras.preprocessing import image
 import random
 import math
 import scipy.ndimage
-from scipy.ndimage import zoom, rotate, shift, shear, gaussian_filter, sobel, laplace, prewitt, uniform_filter, maximum_filter, minimum_filter, median_filter, variance, gaussian_laplace, gaussian_gradient_magnitude, generic_gradient_magnitude, generic_filter, binary_erosion, binary_dilation, binary_opening, binary_closing, grey_erosion, grey_dilation, grey_opening, grey_closing, distance_transform_edt, distance_transform_cdt, label, find_objects, center_of_mass, zoom
+from scipy.ndimage import zoom, rotate, shift, gaussian_filter, sobel, laplace, prewitt, uniform_filter, maximum_filter, minimum_filter, median_filter, variance, gaussian_laplace, gaussian_gradient_magnitude, generic_gradient_magnitude, generic_filter, binary_erosion, binary_dilation, binary_opening, binary_closing, grey_erosion, grey_dilation, grey_opening, grey_closing, distance_transform_edt, distance_transform_cdt, label, find_objects, center_of_mass, zoom
 from scipy.ndimage import zoom
 
-base_dir = 'D:\IIT Indore Files\Assignments\Sem-6\Human_Body_detection\Screenshots'
+base_dir = 'D:\IIT Indore Files\Assignments\Sem-6\Human_Body_Detection_Model\Screenshots'
 # names = ["train", 'validation', 'test']
 train_dir = os.path.join(base_dir, 'train')
 validation_dir = os.path.join(base_dir, 'validation')
@@ -80,6 +82,12 @@ test_human_dir = os.path.join(test_dir, 'Human Body')
 # Directory with our testing Not Human Body pictures
 test_not_human_dir = os.path.join(test_dir, 'Not Human Body')
 
+
+path = "Screenshots"
+file = os.listdir(path)
+
+j = 570
+
 # Augment the images
 def augment_images(image_dir, new_dir):
     if not os.path.exists(new_dir):
@@ -89,9 +97,11 @@ def augment_images(image_dir, new_dir):
         x = img_to_array(img)
         x = x.reshape((1,) + x.shape)
         i = 0
-        for batch in datagen.flow(x, batch_size=1, save_to_dir=new_dir, save_prefix='augmented', save_format='jpeg'):
+        for batch in datagen.flow(x, batch_size=1, save_to_dir=new_dir, save_prefix='augmented', save_format='png'):
             i += 1
             if i > 20:
+                os.rename(os.path.join(path, file), os.path.join(path, "Screenshot_" + str(j) + ".png"))
+                j += 1
                 break
 
 datagen = ImageDataGenerator(
@@ -103,9 +113,6 @@ datagen = ImageDataGenerator(
     horizontal_flip=True,
     vertical_flip=True,
     brightness_range=[0.2, 1.0],
-    contrast_range=[0.2, 1.0],
-    saturation_range=[0.2, 1.0],
-    hue_range=[-0.5, 0.5],
     preprocessing_function=tf.keras.applications.resnet50.preprocess_input
 )
 
