@@ -111,6 +111,6 @@ datagen = ImageDataGenerator(
 # augment_images(train_human_dir, os.path.join(train_dir, 'augmented_human'))
 # augment_images(validation_human_dir, os.path.join(validation_dir, 'augmented_human'))
 # augment_images(test_human_dir, os.path.join(test_dir, 'augmented_human'))
-augment_images(train_not_human_dir, os.path.join(train_dir, 'augmented_not_human'))
-# augment_images(validation_not_human_dir, os.path.join(validation_dir, 'augmented_not_human'))
+# augment_images(train_not_human_dir, os.path.join(train_dir, 'augmented_not_human'))
+augment_images(validation_not_human_dir, os.path.join(validation_dir, 'augmented_not_human'))
 # augment_images(test_not_human_dir, os.path.join(test_dir, 'augmented_not_human'))
