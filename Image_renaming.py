@@ -1,7 +1,3 @@
-# Write a code to rename the names of the images in the Screenshots folder to the format "Image_<number>.png" and push the new name to a new csv file.
-# The csv file should have two columns, the new name and the Image classification.
-# The Image classification should be manually entered by the user.
-
 import os
 import csv
 

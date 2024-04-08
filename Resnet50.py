@@ -24,17 +24,17 @@ from keras.callbacks import ModelCheckpoint
 
 
 base_dir = 'D:\IIT Indore Files\Assignments\Sem-6\Human_Body_detection\Screenshots'
-# names = ["train", 'validation', 'test']
+names = ["train", 'validation', 'test']
 train_dir = os.path.join(base_dir, 'train')
 validation_dir = os.path.join(base_dir, 'validation')
 test_dir = os.path.join(base_dir, 'test')
-# for i in range (3):
-#     if not os.path.exists(os.path.join(base_dir, names[i])):
-#         os.makedirs(os.path.join(base_dir, names[i]))
-#     if not os.path.exists(os.path.join(base_dir, names[i], 'Human Body')):
-#         os.makedirs(os.path.join(base_dir, names[i], 'Human Body'))
-#     if not os.path.exists(os.path.join(base_dir, names[i], 'Not Human Body')):
-#         os.makedirs(os.path.join(base_dir, names[i], 'Not Human Body'))
+for i in range (3):
+    if not os.path.exists(os.path.join(base_dir, names[i])):
+        os.makedirs(os.path.join(base_dir, names[i]))
+    if not os.path.exists(os.path.join(base_dir, names[i], 'Human Body')):
+        os.makedirs(os.path.join(base_dir, names[i], 'Human Body'))
+    if not os.path.exists(os.path.join(base_dir, names[i], 'Not Human Body')):
+        os.makedirs(os.path.join(base_dir, names[i], 'Not Human Body'))
 
 # Directory with our training Human Body pictures
 train_human_dir = os.path.join(train_dir, 'Human Body')
@@ -54,45 +54,45 @@ test_human_dir = os.path.join(test_dir, 'Human Body')
 # Directory with our testing Not Human Body pictures
 test_not_human_dir = os.path.join(test_dir, 'Not Human Body')
 
-# df = pd.read_csv('Image_classification.csv')
-# df['New Name'] = df['New Name'].apply(lambda x: x)
-# df['Image Classification'] = df['Image Classification'].apply(lambda x: 'Human Body' if x == 'Human Body' else 'Not Human Body')
+df = pd.read_csv('Image_classification.csv')
+df['New Name'] = df['New Name'].apply(lambda x: x)
+df['Image Classification'] = df['Image Classification'].apply(lambda x: 'Human Body' if x == 'Human Body' else 'Not Human Body')
 
-# # Iterate over the 'Image Classification' column and count the number of entries for each category
-# human_body_count = df[df['Image Classification'] == 'Human Body'].shape[0]
-# not_human_body_count = df[df['Image Classification'] == 'Not Human Body'].shape[0]
+# Iterate over the 'Image Classification' column and count the number of entries for each category
+human_body_count = df[df['Image Classification'] == 'Human Body'].shape[0]
+not_human_body_count = df[df['Image Classification'] == 'Not Human Body'].shape[0]
 
-# # Store the names of the separate categories in separate lists
-# human_body_images = df[df['Image Classification'] == 'Human Body']['New Name'].tolist()
-# not_human_body_images = df[df['Image Classification'] == 'Not Human Body']['New Name'].tolist()
+# Store the names of the separate categories in separate lists
+human_body_images = df[df['Image Classification'] == 'Human Body']['New Name'].tolist()
+not_human_body_images = df[df['Image Classification'] == 'Not Human Body']['New Name'].tolist()
 
-# # Split the dataset into training, validation, and testing datasets based on the category
-# train_human_body_images = human_body_images[int(0.00 * human_body_count):int(0.7 * human_body_count)]
-# validation_human_body_images = human_body_images[int(0.7 * human_body_count):int(0.85 * human_body_count)]
-# test_human_body_images = human_body_images[int(0.85 * human_body_count):int(1.00 * human_body_count)]
+# Split the dataset into training, validation, and testing datasets based on the category
+train_human_body_images = human_body_images[int(0.00 * human_body_count):int(0.7 * human_body_count)]
+validation_human_body_images = human_body_images[int(0.7 * human_body_count):int(0.85 * human_body_count)]
+test_human_body_images = human_body_images[int(0.85 * human_body_count):int(1.00 * human_body_count)]
 
-# train_not_human_body_images = not_human_body_images[int(0.00 * human_body_count):int(0.7 * not_human_body_count)]
-# validation_not_human_body_images = not_human_body_images[int(0.7 * not_human_body_count):int(0.85 * not_human_body_count)]
-# test_not_human_body_images = not_human_body_images[int(0.85 * not_human_body_count):int(1.00 * human_body_count)]
+train_not_human_body_images = not_human_body_images[int(0.00 * human_body_count):int(0.7 * not_human_body_count)]
+validation_not_human_body_images = not_human_body_images[int(0.7 * not_human_body_count):int(0.85 * not_human_body_count)]
+test_not_human_body_images = not_human_body_images[int(0.85 * not_human_body_count):int(1.00 * human_body_count)]
 
-# # Copy the images to the respective directories
-# for image_name in train_human_body_images:
-#     shutil.copy(os.path.join(base_dir, image_name), os.path.join(train_human_dir, image_name))
+# Copy the images to the respective directories
+for image_name in train_human_body_images:
+    shutil.copy(os.path.join(base_dir, image_name), os.path.join(train_human_dir, image_name))
 
-# for image_name in validation_human_body_images:
-#     shutil.copy(os.path.join(base_dir, image_name), os.path.join(validation_human_dir, image_name))
+for image_name in validation_human_body_images:
+    shutil.copy(os.path.join(base_dir, image_name), os.path.join(validation_human_dir, image_name))
 
-# for image_name in test_human_body_images:
-#     shutil.copy(os.path.join(base_dir, image_name), os.path.join(test_human_dir, image_name))
+for image_name in test_human_body_images:
+    shutil.copy(os.path.join(base_dir, image_name), os.path.join(test_human_dir, image_name))
 
-# for image_name in train_not_human_body_images:
-#     shutil.copy(os.path.join(base_dir, image_name), os.path.join(train_not_human_dir, image_name))
+for image_name in train_not_human_body_images:
+    shutil.copy(os.path.join(base_dir, image_name), os.path.join(train_not_human_dir, image_name))
 
-# for image_name in validation_not_human_body_images:
-#     shutil.copy(os.path.join(base_dir, image_name), os.path.join(validation_not_human_dir, image_name))
+for image_name in validation_not_human_body_images:
+    shutil.copy(os.path.join(base_dir, image_name), os.path.join(validation_not_human_dir, image_name))
 
-# for image_name in test_not_human_body_images:
-#     shutil.copy(os.path.join(base_dir, image_name), os.path.join(test_not_human_dir, image_name))
+for image_name in test_not_human_body_images:
+    shutil.copy(os.path.join(base_dir, image_name), os.path.join(test_not_human_dir, image_name))
 
 # Load the ResNet50 model
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
