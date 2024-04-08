@@ -23,7 +23,7 @@ from keras import optimizers
 from keras.callbacks import ModelCheckpoint
 
 
-base_dir = 'D:\IIT Indore Files\Assignments\Sem-6\Human_Body_detection\Screenshots'
+base_dir = 'D:\IIT Indore Files\Assignments\Sem-6\Human_Body_Detection_Model\Screenshots'
 names = ["train", 'validation', 'test']
 train_dir = os.path.join(base_dir, 'train')
 validation_dir = os.path.join(base_dir, 'validation')
