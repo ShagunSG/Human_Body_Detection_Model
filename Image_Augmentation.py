@@ -82,12 +82,6 @@ test_human_dir = os.path.join(test_dir, 'Human Body')
 # Directory with our testing Not Human Body pictures
 test_not_human_dir = os.path.join(test_dir, 'Not Human Body')
 
-
-path = "Screenshots"
-file = os.listdir(path)
-
-j = 570
-
 # Augment the images
 def augment_images(image_dir, new_dir):
     if not os.path.exists(new_dir):
@@ -100,8 +94,6 @@ def augment_images(image_dir, new_dir):
         for batch in datagen.flow(x, batch_size=1, save_to_dir=new_dir, save_prefix='augmented', save_format='png'):
             i += 1
             if i > 20:
-                os.rename(os.path.join(path, file), os.path.join(path, "Screenshot_" + str(j) + ".png"))
-                j += 1
                 break
 
 datagen = ImageDataGenerator(
@@ -116,9 +108,9 @@ datagen = ImageDataGenerator(
     preprocessing_function=tf.keras.applications.resnet50.preprocess_input
 )
 
-augment_images(train_human_dir, os.path.join(train_dir, 'augmented_human'))
-augment_images(validation_human_dir, os.path.join(validation_dir, 'augmented_human'))
-augment_images(test_human_dir, os.path.join(test_dir, 'augmented_human'))
+# augment_images(train_human_dir, os.path.join(train_dir, 'augmented_human'))
+# augment_images(validation_human_dir, os.path.join(validation_dir, 'augmented_human'))
+# augment_images(test_human_dir, os.path.join(test_dir, 'augmented_human'))
 augment_images(train_not_human_dir, os.path.join(train_dir, 'augmented_not_human'))
-augment_images(validation_not_human_dir, os.path.join(validation_dir, 'augmented_not_human'))
-augment_images(test_not_human_dir, os.path.join(test_dir, 'augmented_not_human'))
+# augment_images(validation_not_human_dir, os.path.join(validation_dir, 'augmented_not_human'))
+# augment_images(test_not_human_dir, os.path.join(test_dir, 'augmented_not_human'))
