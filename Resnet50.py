@@ -155,15 +155,15 @@ print(predictions)
 # Save the model
 model.save('model.h5')
 
-# Load the model
-model = tf.keras.models.load_model('model.h5')
+# # Load the model
+# model = tf.keras.models.load_model('model.h5')
 
-# Predict on a single image
-img_path = 'path/to/image.jpg'
-img = tf.keras.preprocessing.image.load_img(img_path, target_size=(224, 224))
-img_array = tf.keras.preprocessing.image.img_to_array(img)
-img_array = preprocess_input(img_array)
-img_array = tf.expand_dims(img_array, 0)
+# # Predict on a single image
+# img_path = 'path/to/image.jpg'
+# img = tf.keras.preprocessing.image.load_img(img_path, target_size=(224, 224))
+# img_array = tf.keras.preprocessing.image.img_to_array(img)
+# img_array = preprocess_input(img_array)
+# img_array = tf.expand_dims(img_array, 0)
 
-prediction = model.predict(img_array)
-print(prediction)
+# prediction = model.predict(img_array)
+# print(prediction)
