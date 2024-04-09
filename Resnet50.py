@@ -1,4 +1,4 @@
-#Write a code for ResNet50 model.
+# Write a code for ResNet50 model.
 # The model should take images from the folder 'Screenshots' and a csv file named 'Image_classification' having two columns, namely, 'New Name' and 'Image Classification' as input. 
 # The model should output a single prediction for each image.
 # The model should be trained on the given dataset.
