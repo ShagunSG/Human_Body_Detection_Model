@@ -153,7 +153,7 @@ predictions = model.predict(test_generator)
 print(predictions)
 
 # Save the model
-model.save_weights('model.h5')
+model.save_weights('model.weights.h5')
 
 # # Load the model
 # model = tf.keras.models.load_weights('model.h5')
